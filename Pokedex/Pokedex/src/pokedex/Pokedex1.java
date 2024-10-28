@@ -4,12 +4,23 @@
  */
 package pokedex;
 
+import java.awt.Color;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author MEDAC
  */
 public class Pokedex1 extends javax.swing.JFrame {
-    private ConexionBD conexion;
+    private ConexionBD conexion = new ConexionBD();
+    Connection dbConnection =null;
+    Statement statement= null;
+    Statement statement2 = null;
+    ResultSet resultado=null;
 
     /**
      * Creates new form Pokedex1
@@ -132,7 +143,8 @@ public class Pokedex1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btn_encenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_encenderActionPerformed
-        
+    dbConnection=conexion.conexion_correcta();
+    jPanel2.setBackground(Color.green);
     }//GEN-LAST:event_btn_encenderActionPerformed
 
     /**
