@@ -1,0 +1,31 @@
+ENTIDADES:
+-Pokemon
+-Entrenador
+-Gimnasio
+-Lider(Débil)
+-Objeto
+-Generación
+-Profesor
+-Movimientos
+
+---------------------------------------------------
+ATRIBUTOS:
+-Pokemon: Nombre,Numero,Tipo1,Tipo2,Descripcion
+-Entrenador: Nombre,Genero,Rol
+-Gimnasio: Nombre,Tipo,Ciudad
+-Lider: Nombre,Tipo,Ciudad
+-Objeto: Nombre,descripcion
+-Generacion: Numero,Region,Legendario1,Legendario2
+-Profesor :Nombre,Ciudad,Inicial1,Inicial2,Inicial3
+-Movimientos: Nombre,Tipo,Categoria,Descripcion,PP
+
+---------------------------------------------------
+RELACIONES:
+-Varios pokemon puede pertenecer a varios entrenadores, mientras que varios entrenadores pueden tener varios pokemon.
+-Varios pokemon puede pertenecer a varios lideres mientras que varios lideres pueden tener varios pokemon.
+-Un gimnasio tiene un solo lider, mientras que un lider solo puede pertenecer a un solo gimnasio. 
+-Un objeto puede ser equipado a varios pokemon, mientras que un pokemon solo puede tener un solo objeto equipado.
+-Un pokemon pertenece a una sola generación, mientras que a una generación pertenecen varios pokemon.
+-Una generación tiene varios gimnasios, mientras que un gimnasio solo pertenece a una sola generación.
+-Un profesor pertenece a una sola generación, mientras que una generación tiene a un solo profesor.
+-Un pokemon conoce varios movimientos, mientras que un movimiento puede ser conocido por varios pokemon.
