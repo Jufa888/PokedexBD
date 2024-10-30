@@ -5,8 +5,6 @@
 package pokedex;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,10 +20,8 @@ public class Pokedex1 extends javax.swing.JFrame {
     Connection dbConnection =null;
     Statement statement= null;
     Statement statement2 = null;
-    ResultSet resultadot=null;
-    String pkm;
-    
-    
+    ResultSet resultado=null;
+    String pokemon_nombre;
     
 
     /**
@@ -33,8 +29,7 @@ public class Pokedex1 extends javax.swing.JFrame {
      */
     public Pokedex1() {
         initComponents();
-        Panel_datos.setVisible(false);
-        label_desc.setVisible(false);
+        
     }
 
     /**
@@ -46,61 +41,49 @@ public class Pokedex1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txt_pkmNombre = new javax.swing.JTextField();
+        btn_buscar = new javax.swing.JButton();
         btn_encender = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btn_ins = new javax.swing.JButton();
-        btn_act = new javax.swing.JButton();
-        btn_bor = new javax.swing.JButton();
-        Panel_datos = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        label_nombre = new javax.swing.JLabel();
-        label_numero = new javax.swing.JLabel();
-        label_tipo1 = new javax.swing.JLabel();
-        label_tipo2 = new javax.swing.JLabel();
-        label_generacion = new javax.swing.JLabel();
-        label_desc = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        tf2_ins = new javax.swing.JTextField();
-        tf1_ins = new javax.swing.JTextField();
-        tf5_ins = new javax.swing.JTextField();
-        tf3_ins = new javax.swing.JTextField();
-        tf4_ins = new javax.swing.JTextField();
-        tf6_ins = new javax.swing.JTextField();
-        cbx = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
+        btn_insertar = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
+        btn_borrar = new javax.swing.JButton();
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel5.setText("Tipo 1");
+        jButton2.setBackground(new java.awt.Color(51, 102, 255));
+        jButton2.setForeground(new java.awt.Color(255, 255, 0));
+        jButton2.setText("BUSCAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 204, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setIconImage(getIconImage());
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("POKÉDEX");
+
+        txt_pkmNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_pkmNombreActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 102, 255));
-        jButton1.setForeground(new java.awt.Color(255, 255, 0));
-        jButton1.setText("BUSCAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_buscar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_buscar.setForeground(new java.awt.Color(255, 255, 0));
+        btn_buscar.setText("BUSCAR");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_buscarActionPerformed(evt);
             }
         });
 
@@ -126,226 +109,62 @@ public class Pokedex1 extends javax.swing.JFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        btn_ins.setBackground(new java.awt.Color(51, 102, 255));
-        btn_ins.setForeground(new java.awt.Color(255, 255, 0));
-        btn_ins.setText("INSERTAR");
-        btn_ins.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_insActionPerformed(evt);
-            }
-        });
+        btn_insertar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_insertar.setForeground(new java.awt.Color(255, 255, 0));
+        btn_insertar.setText("INSERTAR");
 
-        btn_act.setBackground(new java.awt.Color(51, 102, 255));
-        btn_act.setForeground(new java.awt.Color(255, 255, 0));
-        btn_act.setText("ACTUALIZAR");
+        btn_actualizar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_actualizar.setForeground(new java.awt.Color(255, 255, 0));
+        btn_actualizar.setText("ACTUALIZAR");
 
-        btn_bor.setBackground(new java.awt.Color(51, 102, 255));
-        btn_bor.setForeground(new java.awt.Color(255, 255, 0));
-        btn_bor.setText("BORRAR");
-
-        Panel_datos.setBackground(new java.awt.Color(102, 204, 255));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel2.setText("Generación");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel3.setText("Nº");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel4.setText("Tipo 1");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel6.setText("Tipo 2");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel8.setText("Nombre");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel9.setText("Descripción");
-
-        label_nombre.setText("jLabel10");
-
-        label_numero.setText("jLabel11");
-
-        label_tipo1.setText("jLabel12");
-
-        label_tipo2.setText("jLabel13");
-
-        label_generacion.setText("jLabel14");
-
-        javax.swing.GroupLayout Panel_datosLayout = new javax.swing.GroupLayout(Panel_datos);
-        Panel_datos.setLayout(Panel_datosLayout);
-        Panel_datosLayout.setHorizontalGroup(
-            Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_datosLayout.createSequentialGroup()
-                .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_datosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                        .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_numero)
-                            .addComponent(label_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(label_tipo2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                                .addComponent(label_tipo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(label_generacion)))
-                    .addGroup(Panel_datosLayout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel9)))
-                .addGap(28, 28, 28))
-        );
-        Panel_datosLayout.setVerticalGroup(
-            Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_datosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(label_nombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_datosLayout.createSequentialGroup()
-                        .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(label_numero))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Panel_datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(label_generacion)))
-                    .addGroup(Panel_datosLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(label_tipo1)
-                        .addGap(12, 12, 12)
-                        .addComponent(label_tipo2)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9))
-        );
-
-        label_desc.setBackground(new java.awt.Color(0, 0, 0));
-        label_desc.setForeground(new java.awt.Color(0, 0, 0));
-        label_desc.setText("A Sceptile le crecen en la espalda unas semillas llenas de nutrientes que sirven para revitalizar los árboles. De hecho, se dedica a cuidarlos con mimo para que crezcan bien");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("POKÉDEX");
-
-        cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pokemon", "Entrenador", "Generacion", "Movimiento", "Profesor", "Gimnasio", "Lider", "Objeto" }));
-        cbx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 51));
-        jLabel10.setText("Tabla");
+        btn_borrar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_borrar.setForeground(new java.awt.Color(255, 255, 0));
+        btn_borrar.setText("BORRAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_encender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(Panel_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_desc)
-                                    .addComponent(btn_bor, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_act))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tf1_ins, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf2_ins, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf3_ins, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf4_ins, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf5_ins, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf6_ins, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                                .addComponent(btn_ins, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_encender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(168, 168, 168)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_pkmNombre))
+                .addContainerGap(254, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(150, 150, 150)
-                    .addComponent(jLabel7)
-                    .addContainerGap(602, Short.MAX_VALUE)))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btn_actualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_insertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_borrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_buscar)
+                .addGap(331, 331, 331))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btn_encender, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btn_encender, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(Panel_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(label_desc)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf2_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf1_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf5_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf3_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf4_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf6_ins, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ins)
-                    .addComponent(cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_pkmNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_buscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(btn_insertar)
                 .addGap(45, 45, 45)
-                .addComponent(btn_act)
-                .addGap(18, 18, 18)
-                .addComponent(btn_bor)
-                .addContainerGap(262, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jLabel7)
-                    .addContainerGap(717, Short.MAX_VALUE)))
+                .addComponent(btn_actualizar)
+                .addGap(47, 47, 47)
+                .addComponent(btn_borrar)
+                .addGap(232, 232, 232))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -362,178 +181,42 @@ public class Pokedex1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_pkmNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_pkmNombreActionPerformed
+        
+    }//GEN-LAST:event_txt_pkmNombreActionPerformed
+
     private void btn_encenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_encenderActionPerformed
-        dbConnection=conexion.conexion_correcta();
-        jPanel2.setBackground(Color.green);
+    dbConnection=conexion.conexion_correcta();
+    jPanel2.setBackground(Color.green);
+    
     }//GEN-LAST:event_btn_encenderActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+    pokemon_nombre = txt_pkmNombre.getText();
         
-        pkm = jTextField1.getText();
         try {
-            statement = dbConnection.createStatement();
-            resultadot = statement.executeQuery("select * from pokemon where nombre = '"+pkm+"'");
-            
-            while(resultadot.next()) {
-                label_nombre.setText(resultadot.getString("nombre"));
-                label_numero.setText(resultadot.getString("numero"));
-                label_tipo1.setText(resultadot.getString("tipo1"));
-                if(resultadot.getString("tipo2") == null)
-                {
-                    label_tipo2.setText("---");
-                }else
-                {
-                    label_tipo2.setText(resultadot.getString("tipo2"));
-                }
-                label_generacion.setText(resultadot.getString("generacion_numero"));
-                label_desc.setText(resultadot.getString("descripcion"));
-                Panel_datos.setVisible(true);
-                label_desc.setVisible(true);
-                
-                /* Consola
-                System.out.println(resultadot.getInt("numero"));
-                System.out.println(resultadot.getString("nombre"));
-                System.out.println(resultadot.getString("tipo1"));
-                System.out.println(resultadot.getString("tipo2"));
-                System.out.println(resultadot.getString("descripcion"));
-                System.out.println(resultadot.getInt("generacion_numero"));*/
-            }
+    statement = dbConnection.createStatement();
+    resultado = statement.executeQuery("select * from pokemon where nombre = '"+pokemon_nombre+"'");
 
-        } catch (SQLException e1) {
-
-            e1.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void btn_insActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insActionPerformed
-        try {
-            
-            String cbxItem = cbx.getSelectedItem().toString();
-            int tablae =-1
-                    ;
-            if(cbxItem.contains("Pokemon"))
-            {
-               tablae = 0;
-            }else if(cbxItem.contains("Entrenador")){
-            tablae = 1;
-            }
-            else if(cbxItem.contains("Generacion")){
-            tablae = 2;
-            }
-            else if(cbxItem.contains("Movimiento")){
-            tablae = 3;
-            }
-            else if(cbxItem.contains("Profesor")){
-            tablae = 4;
-            }
-            else if(cbxItem.contains("Gimnasio")){
-            tablae = 6;
-            }
-            else if(cbxItem.contains("Lider")){
-            tablae = 7;
-            }
-            else if(cbxItem.contains("Objeto")){
-            tablae = 8;
-            }
-            
-            switch (tablae) {
-                case 0:
-            String at1 = tf1_ins.getText();
-            String at2 = tf2_ins.getText();
-            String at3 = tf3_ins.getText();
-            String at4 = tf4_ins.getText();
-            String at5 = tf5_ins.getText();
-            String at6 = tf6_ins.getText();
-            statement = dbConnection.createStatement();
-            int resultado = statement.executeUpdate("insert into Pokemon(Nombre,Numero,Tipo1,Tipo2,Descripcion,Objeto_Nombre,Generacion_Numero) values('"+at1+"',"+at2+",'"+at3+"','"+at4+"','"+at5+"',null,"+at6);
-                break;
-                case 1:
-             at1 = tf1_ins.getText();
-             at2 = tf2_ins.getText();
-             at3 = tf3_ins.getText(); 
-            statement = dbConnection.createStatement();
-             resultado = statement.executeUpdate("insert into Pokemon(Nombre,Genero,Rol) values('"+at1+"',"+at2+","+"'"+at3+"'");
-                break; 
-                case 2:
-             at1 = tf1_ins.getText();
-             at2 = tf2_ins.getText();
-             at3 = tf3_ins.getText();
-             at4 = tf4_ins.getText();
-            statement = dbConnection.createStatement();
-             resultado = statement.executeUpdate("insert into Pokemon(Nombre,Numero,Tipo1,Tipo2,Descripcion,Objeto_Nombre,Generacion_Numero) values('"+at1+"',"+at2+",'"+at3+"','"+at4+"','"+at5+"',null,"+at6);
-                break; 
-                case 3:
-             at1 = tf1_ins.getText();
-             at2 = tf2_ins.getText();
-             at3 = tf3_ins.getText();
-             at4 = tf4_ins.getText();
-             at5 = tf5_ins.getText();
-            statement = dbConnection.createStatement();
-             resultado = statement.executeUpdate("insert into Pokemon(Nombre,Numero,Tipo1,Tipo2,Descripcion,Objeto_Nombre,Generacion_Numero) values('"+at1+"',"+at2+",'"+at3+"','"+at4+"','"+at5+"',null,"+at6); 
-                break; 
-                case 4:
-             at1 = tf1_ins.getText();
-             at2 = tf2_ins.getText();
-             at3 = tf3_ins.getText();
-             at4 = tf4_ins.getText();
-             at5 = tf5_ins.getText();
-             at6 = tf6_ins.getText();
-            statement = dbConnection.createStatement();
-             resultado = statement.executeUpdate("insert into Pokemon(Nombre,Numero,Tipo1,Tipo2,Descripcion,Objeto_Nombre,Generacion_Numero) values('"+at1+"',"+at2+",'"+at3+"','"+at4+"','"+at5+"',null,"+at6); 
-                break; 
-                case 6:
-             at1 = tf1_ins.getText();
-             at2 = tf2_ins.getText();
-             at3 = tf3_ins.getText();
-             at4 = tf4_ins.getText();
-             at5 = tf5_ins.getText();
-             at6 = tf6_ins.getText();
-            statement = dbConnection.createStatement();
-             resultado = statement.executeUpdate("insert into Pokemon(Nombre,Numero,Tipo1,Tipo2,Descripcion,Objeto_Nombre,Generacion_Numero) values('"+at1+"',"+at2+",'"+at3+"','"+at4+"','"+at5+"',null,"+at6);
-                break; 
-                case 7:
-                    at1 = tf1_ins.getText();
-             at2 = tf2_ins.getText();
-             at3 = tf3_ins.getText();
-             at4 = tf4_ins.getText();
-             at5 = tf5_ins.getText();
-             at6 = tf6_ins.getText();
-            statement = dbConnection.createStatement();
-             resultado = statement.executeUpdate("insert into Pokemon(Nombre,Numero,Tipo1,Tipo2,Descripcion,Objeto_Nombre,Generacion_Numero) values('"+at1+"',"+at2+",'"+at3+"','"+at4+"','"+at5+"',null,"+at6); 
-                break; 
-                case 8:
-             at1 = tf1_ins.getText();
-             at2 = tf2_ins.getText();
-             at3 = tf3_ins.getText();
-             at4 = tf4_ins.getText();
-             at5 = tf5_ins.getText();
-             at6 = tf6_ins.getText();
-            statement = dbConnection.createStatement();
-             resultado = statement.executeUpdate("insert into Pokemon(Nombre,Numero,Tipo1,Tipo2,Descripcion,Objeto_Nombre,Generacion_Numero) values('"+at1+"',"+at2+",'"+at3+"','"+at4+"','"+at5+"',null,"+at6);
-                break; 
-            }
-            
-           
-        } catch (SQLException e1) {
-
-            e1.printStackTrace();
-        }
-    }//GEN-LAST:event_btn_insActionPerformed
-
-    private void cbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxActionPerformed
-    
-
-    @Override
-    public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconoP.png"));
-        return retValue;
+    while(resultado.next()) {
+        System.out.println(resultado.getInt("numero"));
+        System.out.println(resultado.getString("nombre"));
+        System.out.println(resultado.getString("tipo1"));
+        System.out.println(resultado.getString("tipo2"));
+        System.out.println(resultado.getString("descripcion"));
+        System.out.println(resultado.getInt("generacion_numero"));
     }
+					
+    } catch (SQLException e1) {
+		
+    e1.printStackTrace();
+    }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -570,36 +253,15 @@ public class Pokedex1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Panel_datos;
-    private javax.swing.JButton btn_act;
-    private javax.swing.JButton btn_bor;
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_borrar;
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_encender;
-    private javax.swing.JButton btn_ins;
-    private javax.swing.JComboBox<String> cbx;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton btn_insertar;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel label_desc;
-    private javax.swing.JLabel label_generacion;
-    private javax.swing.JLabel label_nombre;
-    private javax.swing.JLabel label_numero;
-    private javax.swing.JLabel label_tipo1;
-    private javax.swing.JLabel label_tipo2;
-    private javax.swing.JTextField tf1_ins;
-    private javax.swing.JTextField tf2_ins;
-    private javax.swing.JTextField tf3_ins;
-    private javax.swing.JTextField tf4_ins;
-    private javax.swing.JTextField tf5_ins;
-    private javax.swing.JTextField tf6_ins;
+    private javax.swing.JTextField txt_pkmNombre;
     // End of variables declaration//GEN-END:variables
 }
