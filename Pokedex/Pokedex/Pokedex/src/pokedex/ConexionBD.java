@@ -24,6 +24,7 @@ public class ConexionBD {
 			con=DriverManager.getConnection(URL, USUARIO, CLAVE);
 			
 			System.out.println("Conexion realizada correctamente");
+                        
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error en la conexion");
